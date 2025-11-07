@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { obtenerParticipante } from "../services/api";
 import logo from "../assets/logo.png";
-import qr from "../assets/qr.png"; // imagen QR opcional
+import qr from "../assets/qr.png";
 
 export default function Gafete() {
   const { id } = useParams();
@@ -10,7 +10,7 @@ export default function Gafete() {
   const [reverso, setReverso] = useState(false);
 
   useEffect(() => {
-    obtenerParticipante(id).then((res) => setP(res.data));
+    obtenerParticipante(id).then((data) => setP(data)); // 👈 CAMBIO AQUÍ: quité el .data
   }, [id]);
 
   if (!p) return <p className="text-center mt-5">Cargando...</p>;
@@ -26,7 +26,7 @@ export default function Gafete() {
         <div className="gafete frente">
           <div className="header-gafete">
             <img src={logo} alt="Logo UTL" className="logo-gafete" />
-            <h5>Congreso TIC’s 2025</h5>
+            <h5>Congreso TIC's 2025</h5>
           </div>
           <div className="foto-container">
             <img src={p.avatarUrl} alt={p.nombre} className="foto-gafete" />
