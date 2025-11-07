@@ -1,7 +1,13 @@
 import axios from "axios";
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "https://congresoapi.onrender.com/api";
+
 const api = axios.create({
-  baseURL: "https://congresoapi.onrender.com/api",
+  baseURL: API_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 export const obtenerParticipantes = async (search = "") => {
@@ -9,5 +15,14 @@ export const obtenerParticipantes = async (search = "") => {
   return res.data;
 };
 
-export const registrarParticipante = (data) => api.post("/registro", data);
-export const obtenerParticipante = (id) => api.get(`/participante/${id}`);
+export const registrarParticipante = async (data) => {
+  const res = await api.post("/registro", data);
+  return res.data;
+};
+
+export const obtenerParticipante = async (id) => {
+  const res = await api.get(`/participante/${id}`);
+  return res.data;
+};
+
+export default api;
