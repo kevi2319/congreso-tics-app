@@ -4,14 +4,16 @@ import Participantes from "./pages/Participantes";
 import Gafete from "./pages/Gafete";
 import Navbar from "./components/Navbar";
 import "./styles.css";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Navigate to="/registro" />} />
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/registro" element={<Registro />} />
+         <Route path="/home" element={<Home />} />
         <Route path="/participantes" element={<Participantes />} />
         <Route path="/listado" element={<Participantes />} /> {/* alias */}
         <Route path="/gafete/:id" element={<Gafete />} />
